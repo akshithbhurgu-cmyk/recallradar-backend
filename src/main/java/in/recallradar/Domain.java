@@ -1,0 +1,5 @@
+package in.recallradar;
+import jakarta.persistence.*; import java.time.Instant; import java.util.UUID;
+@Entity @Table(name="app_user") class AppUser { @Id UUID id; String fullName; @Column(unique=true) String email; String passwordHash; String role; boolean enabled=true; Instant createdAt; protected AppUser(){} AppUser(String n,String e,String p){id=UUID.randomUUID();fullName=n;email=e;passwordHash=p;role="ORG_ADMIN";createdAt=Instant.now();} }
+@Entity class RefreshSession { @Id UUID id; UUID userId; @Column(unique=true) String tokenHash; Instant expiresAt; Instant revokedAt; Instant createdAt; protected RefreshSession(){} RefreshSession(UUID u,String h,Instant e){id=UUID.randomUUID();userId=u;tokenHash=h;expiresAt=e;createdAt=Instant.now();} }
+@Entity class PasswordResetToken { @Id UUID id; UUID userId; @Column(unique=true) String tokenHash; Instant expiresAt; Instant usedAt; Instant createdAt; protected PasswordResetToken(){} PasswordResetToken(UUID u,String h){id=UUID.randomUUID();userId=u;tokenHash=h;expiresAt=Instant.now().plusSeconds(1800);createdAt=Instant.now();} }

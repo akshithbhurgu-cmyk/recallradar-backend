@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/recallradar}
+    username: ${DATABASE_USERNAME:recallradar}
+    password: ${DATABASE_PASSWORD:recallradar}
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+  flyway: { enabled: true }
+server:
+  port: ${PORT:8080}
+app:
+  cors-origin: ${CORS_ORIGIN:http://localhost:5173}
+  setup-code: ${SETUP_CODE:change-me-before-production}
+  jwt-secret: ${JWT_SECRET:replace-this-with-a-32-character-minimum-development-secret}
+  access-minutes: 15
+  refresh-days: 7

@@ -1,0 +1,3 @@
+package in.recallradar;
+import jakarta.persistence.*; import java.time.*; import java.util.*;
+@Entity @Table(name="team_invitation") class TeamInvitation {@Id UUID id;UUID organizationId;String email;@Enumerated(EnumType.STRING) OrganizationRole role;@Column(unique=true)String tokenHash;Instant expiresAt;Instant acceptedAt;Instant createdAt;protected TeamInvitation(){} TeamInvitation(UUID org,String email,OrganizationRole role,String hash){id=UUID.randomUUID();organizationId=org;this.email=email;this.role=role;tokenHash=hash;expiresAt=Instant.now().plus(Duration.ofDays(7));createdAt=Instant.now();}}

@@ -1,0 +1,4 @@
+spring:
+  datasource: { url: jdbc:h2:mem:recallradar;MODE=PostgreSQL;DB_CLOSE_DELAY=-1, username: sa, password: '' }
+  jpa: { hibernate.ddl-auto: validate }
+app: { setup-code: test-setup, jwt-secret: test-secret-that-is-at-least-thirty-two-characters-long }

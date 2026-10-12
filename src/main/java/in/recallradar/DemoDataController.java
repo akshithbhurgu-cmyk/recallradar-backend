@@ -1,0 +1,3 @@
+package in.recallradar;
+import jakarta.validation.Valid; import org.springframework.http.*; import org.springframework.security.core.Authentication; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/bootstrap") class DemoDataController {private final DemoDataService service;private final TenantService tenants;DemoDataController(DemoDataService s,TenantService t){service=s;tenants=t;}@PostMapping("/demo") DemoSeedResponse seed(Authentication a,@RequestHeader(value="X-Organization-Id",required=false)String org,@Valid @RequestBody DemoSeedRequest r){return service.seed(tenants.membership(UUID.fromString(a.getName()),org),r);}}
